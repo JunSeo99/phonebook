@@ -8,8 +8,11 @@ int main() {
 
     const char *username = getenv("MONGODB_USERNAME");
     const char *password = getenv("MONGODB_PASSWORD");
+    printf("%s",username);
+    printf("%s",password);
     char uri_string[256];
-    snprintf(uri_string, sizeof(uri_string), "mongodb+srv://%s:%s@cluster0.mongodb.net/test?retryWrites=true&w=majority", username, password);
+    snprintf(uri_string, sizeof(uri_string), "mongodb+srv://%s:%s@cluster0.mci9cwn.mongodb.net/test?retryWrites=true&w=majority", username, password);
+    printf("%s",uri_string);
     bson_error_t error;
    
     client = mongoc_client_new(uri_string);
@@ -18,7 +21,7 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    collection = mongoc_client_get_collection(client, "phonebook_db", "contacts");
+    collection = mongoc_client_get_collection(client, "phonebook", "phonebook");
 
     int choice;
     do {

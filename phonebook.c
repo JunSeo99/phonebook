@@ -8,15 +8,19 @@ void insert_contact(mongoc_collection_t *collection) {
     bson_error_t error;
     char name[100];
     char phone[20];
-
+    char department[100];
+    
     printf("이름을 입력하세요: ");
     scanf("%99s", name);
     printf("전화번호를 입력하세요: ");
     scanf("%19s", phone);
+    printf("부서를 입력하세요: ");
+    scanf("%99s", department);
 
     doc = bson_new();
     BSON_APPEND_UTF8(doc, "name", name);
     BSON_APPEND_UTF8(doc, "phone", phone);
+    BSON_APPEND_UTF8(doc, "department", department);
 
     if (!mongoc_collection_insert_one(collection, doc, NULL, NULL, &error)) {
         fprintf(stderr, "삽입 실패: %s\n", error.message);
@@ -56,14 +60,14 @@ void search_contact(mongoc_collection_t *collection) {
     bson_error_t error;
     char search_term[100];
 
-    printf("검색할 이름이나 전화번호를 입력하세요: ");
+    printf("검색할 이름이나 부서를 입력하세요: ");
     scanf("%99s", search_term);
 
     // OR 조건을 사용하여 쿼리 생성
     query = BCON_NEW("$or",
         "[",
             "{", "name", BCON_UTF8(search_term), "}",
-            "{", "phone", BCON_UTF8(search_term), "}",
+            "{", "department", BCON_UTF8(search_term), "}",
         "]"
     );
 
