@@ -8,4 +8,5 @@
 ├── main.c  
 ├── phonebook.c  
 ├── phonebook.h  
+├── phonebook // 컴파일된 파일
 └── README.md  
