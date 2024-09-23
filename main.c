@@ -18,15 +18,6 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    if (!mongoc_client_ping(client, NULL, &error)) {
-        fprintf(stderr, "핑 실패: %s\n", error.message);
-        mongoc_client_destroy(client);
-        mongoc_cleanup();
-        return EXIT_FAILURE;
-    } else {
-        printf("MongoDB Atlas에 연결되었습니다!\n");
-    }
-
     collection = mongoc_client_get_collection(client, "phonebook_db", "contacts");
 
     int choice;
