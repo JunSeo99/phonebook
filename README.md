@@ -6,9 +6,6 @@
 
 ## 프로젝트 구조  
 ├── main.c  
-|  
 ├── phonebook.c  
-|  
 ├── phonebook.h  
-|  
 └── README.md  
